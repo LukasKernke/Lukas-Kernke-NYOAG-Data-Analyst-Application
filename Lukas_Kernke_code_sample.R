@@ -95,7 +95,7 @@ count_fundbal_deficit_orgs_plot <- ggplot(count_fundbal_deficit_orgs_joined) +
   theme_bw()
 
 
-ggsave("output/count_fundbal_deficit_orgs_plot.png", 
+ggsave("count_fundbal_deficit_orgs_plot.png", 
        plot = count_fundbal_deficit_orgs_plot, 
        units = "in", 
        height = 5, width = 7)
@@ -128,7 +128,7 @@ fundbal_consecutive_deficit <- fundbal_deficit_duplicates %>%
            seq_id) %>% # organizing by sequential years of deficit
   filter(n()>2) # filter to orgs that appear MORE than twice
 
-write_csv(fundbal_consecutive_deficit, "output/fundbal_consecutive_deficit.csv")
+write_csv(fundbal_consecutive_deficit, "fundbal_consecutive_deficit.csv")
 
 
 # make each org one observation to avoid miscounting
@@ -136,7 +136,7 @@ fundbal_orgs_consec_def <- fundbal_consecutive_deficit %>%
   group_by(NAME, `OOC?`) %>% # OoC refers to Organizations of Color
   nest()
 
-write_csv(fundbal_orgs_consec_def, "output/fundbal_orgs_consec_def.csv")
+write_csv(fundbal_orgs_consec_def, "fundbal_orgs_consec_def.csv")
 
 
 # grouping and counting 
@@ -148,7 +148,7 @@ fundbal_consec_def_ooc_count <- fundbal_orgs_consec_def %>%
 # 336 is the total number of organizations with 3 or more years of consecutive deficit
 # therefore n/336 * 100 calculated the percent of all organizations 
 
-write_csv(fundbal_consec_def_ooc_count, "output/fundbal_consec_def_ooc_count.csv")
+write_csv(fundbal_consec_def_ooc_count, "fundbal_consec_def_ooc_count.csv")
 
 #### plotting count ####
 fundbal_consec_def_ooc_count_col_plot <- ggplot() +
@@ -161,7 +161,7 @@ fundbal_consec_def_ooc_count_col_plot <- ggplot() +
   theme(axis.text.x = element_text(angle = 90, hjust=1, vjust = 0.5)) +
   theme_bw()
 
-ggsave("output/fundbal_consec_def_ooc_count_col_plot.png", 
+ggsave("fundbal_consec_def_ooc_count_col_plot.png", 
        plot = fundbal_consec_def_ooc_count_col_plot, 
        units = "in", 
        height = 5, width = 7)
@@ -175,7 +175,7 @@ fundbal_consec_def_ooc_pct_pie_plot <- ggplot(data = fundbal_consec_def_ooc_coun
   labs(title = "Percent Organizations with 3+ Years of Consecutive Deficits") +
   theme_bw()
 
-ggsave("output/fundbal_consec_def_ooc_pct_pie_plot.png", 
+ggsave("fundbal_consec_def_ooc_pct_pie_plot.png", 
        plot = fundbal_consec_def_ooc_pct_pie_plot, 
        units = "in", 
        height = 5, width = 7)
